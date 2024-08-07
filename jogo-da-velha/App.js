@@ -14,9 +14,33 @@ export default function App() {
   const changeMove = (number) => {
     if (array[number] === 0 && !values.winMessage) {
       array[number] = values.isCross;
-      setValues({ isCross: !values.isCross })
+      setValues({ isCross: !values.isCross });
+      winGame(number);
     }
   }
+
+  const winGame = (number) => {
+    if (
+      // Linhas
+         (array[0] === array[number] && array[1] === array[number] && array[2] === array[number])
+      || (array[3] === array[number] && array[4] === array[number] && array[5] === array[number])
+      || (array[6] === array[number] && array[7] === array[number] && array[8] === array[number])
+
+      // Colunas
+      || (array[0] === array[number] && array[3] === array[number] && array[6] === array[number])
+      || (array[1] === array[number] && array[4] === array[number] && array[7] === array[number])
+      || (array[2] === array[number] && array[5] === array[number] && array[8] === array[number])
+
+      // Diagonal
+      || (array[0] === array[number] && array[4] === array[number] && array[8] === array[number])
+      || (array[2] === array[number] && array[4] === array[number] && array[6] === array[number])
+    ){
+      setValues({ ...values, winMessage: array[number] ? "X Venceu" : "O Venceu" });
+    } else if (array.every((element) => element != 0)) {
+      setValues({ ...values, winMessage: "Empate" });
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Jogo da Velha</Text>
@@ -49,6 +73,7 @@ export default function App() {
           <Figura vetor={array} posicao={8} clicado={() => changeMove(8)} />
         </View>
       </View>
+      <Text style={styles.winMessage}>{values.winMessage}</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -84,6 +109,7 @@ const styles = StyleSheet.create({
   winMessage: {
     fontSize: 30,
     color: '#000',
+
     fontWeight: 'bold',
     marginTop: 20,
   }

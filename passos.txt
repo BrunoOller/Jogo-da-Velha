@@ -1,0 +1,37 @@
+Configurar o Git Local:
+git config --global user.name "BrunoOller"
+git config --global user.email brunobrunelli4@gmail.com
+
+git config --global user.name "guibisegabriel"
+git config --global user.email guilherme19.b07@gmail.com
+
+Site da Documentação oficial do Expo:
+docs.expo.dev
+
+Ambiente de um projeto com React Native Expo
+1. Node.js
+2. Git
+3. Emulador Android (Android Studio)
+
+Criar um projeto:
+npx create-expo-app jogo-da-velha
+
+cd jogo-da-velha
+
+npx expo install react-dom react-native-web @expo/webpack-config
+
+Executar o projeto no navegador:
+npx expo start
+
+Executar o projeto no celular:
+npx expo start --localhost --android
+
+
+Para instalar o image picker
+npx expo install expo-image-picker
+
+npx expo install react-native-gesture-handler react-native-reanimated
+
+npx expo install react-native-view-shot expo-media-library
+
+npm install dom-to-image
